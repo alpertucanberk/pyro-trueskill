@@ -22,7 +22,7 @@ def get_data(path):
     num_games = len(df)
 
     print("Number of players:", num_players)
-    print("Number of games", num_games)
+    print("Number of games:", num_games)
   
     indices = np.array(df.index).reshape(num_games, 1)
     white_player_idx = np.array(df['WhitePlayer'].values).reshape(num_games, 1)
@@ -43,6 +43,6 @@ def get_data(path):
     sparse_game_matrix = torch.sparse_coo_tensor(sparse_game_indices,\
          sparse_game_values, torch.Size([num_games, num_players]))
     
-    outcomes = torch.tensor(df['WhiteScore'].values.reshape(num_games, 1))
+    outcome = torch.tensor(df['WhiteScore'].values.reshape(num_games, 1))
 
-    return sparse_game_matrix, outcomes
+    return outcome, sparse_game_matrix
